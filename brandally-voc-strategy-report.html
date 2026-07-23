@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrandAlly Strategy Report: What Owners Say About Agencies</title>
+<style>
+  :root {
+    --paper:#EFEFEA; --surface:#F8F8F5; --sunk:#E6E7E1; --band:#E9EAE4;
+    --ink:#181C1D; --ink-2:#555D5F; --ink-3:#7B8485; --rule:#D4D7D0;
+    --accent:#0F5257; --accent-ink:#0F5257; --accent-soft:rgba(15,82,87,.09);
+    --ok:#3C6A44; --ok-soft:rgba(60,106,68,.10);
+    --warn:#8B5E13; --warn-soft:rgba(139,94,19,.11);
+    --crit:#96372A; --crit-soft:rgba(150,55,42,.10);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --measure:66ch;
+    --s1:.35rem; --s2:.7rem; --s3:1.1rem; --s4:1.7rem; --s5:2.5rem; --s6:3.6rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0F1516; --surface:#151D1E; --sunk:#1A2324; --band:#18201F;
+      --ink:#E8EBE8; --ink-2:#A2ACAB; --ink-3:#798485; --rule:#25302F;
+      --accent:#63B7B2; --accent-ink:#80CAC4; --accent-soft:rgba(99,183,178,.13);
+      --ok:#7CB082; --ok-soft:rgba(124,176,130,.13);
+      --warn:#D2A35A; --warn-soft:rgba(210,163,90,.13);
+      --crit:#DB8473; --crit-soft:rgba(219,132,115,.13);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#0F1516; --surface:#151D1E; --sunk:#1A2324; --band:#18201F;
+    --ink:#E8EBE8; --ink-2:#A2ACAB; --ink-3:#798485; --rule:#25302F;
+    --accent:#63B7B2; --accent-ink:#80CAC4; --accent-soft:rgba(99,183,178,.13);
+    --ok:#7CB082; --ok-soft:rgba(124,176,130,.13);
+    --warn:#D2A35A; --warn-soft:rgba(210,163,90,.13);
+    --crit:#DB8473; --crit-soft:rgba(219,132,115,.13);
+  }
+  :root[data-theme="light"] {
+    --paper:#EFEFEA; --surface:#F8F8F5; --sunk:#E6E7E1; --band:#E9EAE4;
+    --ink:#181C1D; --ink-2:#555D5F; --ink-3:#7B8485; --rule:#D4D7D0;
+    --accent:#0F5257; --accent-ink:#0F5257; --accent-soft:rgba(15,82,87,.09);
+    --ok:#3C6A44; --ok-soft:rgba(60,106,68,.10);
+    --warn:#8B5E13; --warn-soft:rgba(139,94,19,.11);
+    --crit:#96372A; --crit-soft:rgba(150,55,42,.10);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+  .wrap{max-width:1020px;margin:0 auto;padding:0 var(--s4) var(--s6)}
+
+  /* masthead */
+  .mast{padding:var(--s5) 0 var(--s3)}
+  .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 var(--s2)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,4.6vw,2.75rem);line-height:1.1;letter-spacing:-.018em;margin:0 0 var(--s2);max-width:24ch;text-wrap:balance}
+  .sub{font-size:1.05rem;color:var(--ink-2);max-width:62ch;margin:0 0 var(--s3)}
+  .credit{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em;border-top:1px solid var(--rule);padding-top:var(--s2)}
+
+  /* tabs */
+  .tabs{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--ink);margin-bottom:var(--s5);overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tabs-inner{display:flex;gap:0;min-width:max-content}
+  .tabs button{
+    font-family:var(--ui);font-size:11.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--ink-3);background:transparent;border:0;border-bottom:3px solid transparent;
+    padding:13px 15px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s
+  }
+  .tabs button:hover{color:var(--ink)}
+  .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+  .tabs button .tn{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);margin-right:6px}
+  .tabs button[aria-selected="true"] .tn{color:var(--accent-ink)}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .panel[hidden]{display:none}
+  .panel{animation:fade .18s ease-out}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+
+  /* takeaway bar */
+  .takeaway{
+    background:var(--accent-soft);border-left:4px solid var(--accent);
+    padding:var(--s3) var(--s4);margin-bottom:var(--s5)
+  }
+  .takeaway p{margin:0;max-width:62ch;font-size:1.1rem;line-height:1.45}
+  .takeaway b{font-weight:400;font-family:var(--serif)}
+
+  h2{font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.2;letter-spacing:-.01em;margin:var(--s5) 0 var(--s3);padding-bottom:var(--s2);border-bottom:1px solid var(--rule);text-wrap:balance}
+  h2:first-of-type{margin-top:0}
+  h3{font-family:var(--ui);font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--ink-2);margin:var(--s4) 0 var(--s2)}
+  p{max-width:var(--measure);margin:0 0 var(--s3)}
+  a{color:var(--accent-ink)}
+  .fine{font-family:var(--ui);font-size:.78rem;color:var(--ink-3);max-width:var(--measure);line-height:1.5}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 var(--s3)}
+  .stat{background:var(--surface);padding:var(--s3)}
+  .stat .n{font-family:var(--ui);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;display:block;line-height:1}
+  .stat .c{font-family:var(--ui);font-size:10.5px;line-height:1.35;color:var(--ink-3);display:block;margin-top:7px}
+
+  /* frustration blocks */
+  .frust{border:1px solid var(--rule);background:var(--surface);margin-bottom:var(--s3)}
+  .frust-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s2);padding:var(--s3) var(--s4);background:var(--band);border-bottom:1px solid var(--rule)}
+  .frust-head .rank{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.05em}
+  .frust-head .name{font-family:var(--serif);font-size:1.22rem;line-height:1.25;flex:1 1 18ch}
+  .frust-head .pct{font-family:var(--ui);font-size:1.05rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+  .frust-body{padding:var(--s3) var(--s4) var(--s4)}
+  .frust-body > p:first-child{margin-top:0}
+  .says{font-family:var(--ui);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:var(--s3) 0 var(--s2)}
+
+  blockquote{margin:0 0 var(--s3);padding:0 0 0 var(--s3);border-left:2px solid var(--rule)}
+  blockquote p{font-style:italic;font-size:1rem;line-height:1.5;margin:0 0 6px;max-width:60ch}
+  blockquote cite{font-family:var(--mono);font-style:normal;font-size:10px;color:var(--ink-3);line-height:1.5;display:block}
+  blockquote cite a{color:var(--ink-3);text-decoration-color:var(--rule)}
+  blockquote cite a:hover{color:var(--accent-ink)}
+
+  .means{font-family:var(--ui);font-size:.88rem;line-height:1.5;background:var(--accent-soft);border-left:2px solid var(--accent);padding:var(--s2) var(--s3);margin-top:var(--s3)}
+  .means b{display:block;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:4px}
+
+  /* tables */
+  .tw{overflow-x:auto;border:1px solid var(--rule);margin:0 0 var(--s4)}
+  table{border-collapse:collapse;width:100%;min-width:540px;font-family:var(--ui);font-size:.84rem;background:var(--surface)}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.45}
+  th{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700;background:var(--sunk);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* use / avoid */
+  .split{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 var(--s4)}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr}}
+  .col{background:var(--surface);padding:var(--s3) var(--s4) var(--s4)}
+  .col h4{font-family:var(--ui);font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 var(--s2);font-weight:700}
+  .col.yes h4{color:var(--ok)}
+  .col.no h4{color:var(--crit)}
+  .col ul{list-style:none;margin:0;padding:0;font-family:var(--ui);font-size:.86rem;line-height:1.5}
+  .col li{padding:5px 0 5px 18px;position:relative}
+  .col.yes li::before{content:"+";position:absolute;left:0;color:var(--ok);font-weight:700}
+  .col.no li::before{content:"\00d7";position:absolute;left:0;color:var(--crit);font-weight:700}
+
+  /* copy lines */
+  .lines{display:flex;flex-direction:column;gap:var(--s2);margin:0 0 var(--s4)}
+  .line{background:var(--surface);border:1px solid var(--rule);padding:var(--s3);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:baseline}
+  .line .t{font-family:var(--serif);font-size:1.08rem;line-height:1.32;flex:1 1 22ch}
+  .line .cc{font-family:var(--mono);font-size:10px;color:var(--ink-3);white-space:nowrap}
+  .line .w{flex:1 1 100%;font-family:var(--ui);font-size:.82rem;color:var(--ink-2);line-height:1.5}
+  .line.kill{background:var(--crit-soft)}
+  .line.kill .t{text-decoration:line-through;text-decoration-color:var(--crit);color:var(--ink-3)}
+
+  ul.plain{max-width:var(--measure);padding-left:1.05em;margin:0 0 var(--s3)}
+  ul.plain li{margin-bottom:var(--s2)}
+
+  .flag{background:var(--crit-soft);border:1px solid var(--rule);border-left:4px solid var(--crit);padding:var(--s3) var(--s4);margin:0 0 var(--s4)}
+  .flag h3{margin-top:0;color:var(--crit)}
+  .flag p:last-child{margin-bottom:0}
+
+  .note{background:var(--sunk);border:1px solid var(--rule);padding:var(--s3) var(--s4);margin:0 0 var(--s4)}
+  .note h3{margin-top:0}
+  .note p:last-child{margin-bottom:0}
+
+  footer{border-top:1px solid var(--rule);margin-top:var(--s6);padding-top:var(--s3);font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="kicker">BrandAlly &middot; Strategy Report</p>
+    <h1>What business owners say about agencies, and what BrandAlly should do about it</h1>
+    <p class="sub">
+      Voice-of-customer research across local service and eCommerce owners in the US, UK, Australia and Canada.
+      1,332 owner-voice posts naming an agency relationship, January 2025 to July 2026.
+    </p>
+    <p class="credit">Prepared by Nayan &middot; July 2026 &middot; Internal</p>
+  </header>
+
+  <nav class="tabs" aria-label="Report sections">
+    <div class="tabs-inner" role="tablist">
+      <button role="tab" aria-selected="true"  aria-controls="p1" id="t1"><span class="tn">01</span>Summary</button>
+      <button role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="tn">02</span>The Buyer</button>
+      <button role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="tn">03</span>Frustrations</button>
+      <button role="tab" aria-selected="false" aria-controls="p4" id="t4"><span class="tn">04</span>What They Want</button>
+      <button role="tab" aria-selected="false" aria-controls="p5" id="t5"><span class="tn">05</span>Positioning</button>
+      <button role="tab" aria-selected="false" aria-controls="p6" id="t6"><span class="tn">06</span>Offer</button>
+      <button role="tab" aria-selected="false" aria-controls="p7" id="t7"><span class="tn">07</span>Messaging</button>
+      <button role="tab" aria-selected="false" aria-controls="p8" id="t8"><span class="tn">08</span>Objections</button>
+      <button role="tab" aria-selected="false" aria-controls="p9" id="t9"><span class="tn">09</span>Markets</button>
+      <button role="tab" aria-selected="false" aria-controls="p10" id="t10"><span class="tn">10</span>Method</button>
+    </div>
+  </nav>
+
+  <!-- ============ 01 SUMMARY ============ -->
+  <div class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+
+    <div class="takeaway">
+      <p><b>Owners are not angry about bad performance. They are angry about performance they cannot verify.</b></p>
+    </div>
+
+    <h2>The six numbers that matter</h2>
+    <div class="stats">
+      <div class="stat"><span class="n">18.8%</span><span class="c">Cite reports that do not map to money. Rank 1 of 16 themes.</span></div>
+      <div class="stat"><span class="n">8.3%</span><span class="c">Found basic setup work undone in their own account.</span></div>
+      <div class="stat"><span class="n">6.2%</span><span class="c">Went in-house or DIY after firing the agency.</span></div>
+      <div class="stat"><span class="n">6.1%</span><span class="c">Raise AI as a substitute or a price anchor.</span></div>
+      <div class="stat"><span class="n">5.9%</span><span class="c">Say the fee is high relative to what is delivered.</span></div>
+      <div class="stat"><span class="n">2.9%</span><span class="c">Name contract lock-in or exit friction.</span></div>
+    </div>
+    <p class="fine">
+      Percentages are keyword prevalence across n=1,332 owner-voice posts naming an agency, so each is a floor.
+      Corroborated externally: the Focus Digital 2026 churn report found delivery dissatisfaction is the top
+      departure reason in 2026 at 48%, up 14 points year on year, while agencies rank it seventh.
+    </p>
+
+    <h2>Why this is good news for BrandAlly specifically</h2>
+    <p>
+      The number one complaint in this market is that agencies report in impressions, reach, sessions and
+      engagement rate. BrandAlly already reports in revenue, booked calls, ROAS and ROI. That is not a
+      positioning idea that needs building. It is an existing practice that has not been made the headline.
+    </p>
+    <p>
+      Owners describe the fix in their own words, and it matches what you already do.
+    </p>
+    <blockquote>
+      <p>Before anything starts, I make it clear what actually matters to my business: sales, revenue, number of qualified leads. For us, leads that convert are always better than random traffic or beautiful dashboards.</p>
+      <cite>Owner, two agencies deep &middot; r/digital_marketing &middot; 8 Apr 2026 &middot; <a href="https://reddit.com/r/digital_marketing/comments/1sfgjfs/how_can_you_actually_tell_if_a_digital_marketing/">source</a></cite>
+    </blockquote>
+
+    <h2>The seven decisions</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>#</th><th>Decision</th><th>Driven by</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td><strong>Make outcome reporting the headline, not a feature.</strong> Revenue, booked calls, ROAS, ROI. Never impressions.</td><td class="n">18.8%</td></tr>
+          <tr><td class="n">2</td><td><strong>Give them ownership of accounts, tracking and data in writing.</strong> One owner named this as the reason an agency won the pitch.</td><td class="n">Direct evidence</td></tr>
+          <tr><td class="n">3</td><td><strong>Prove conversion tracking before spend starts.</strong> Untracked spend is why the numbers are unverifiable in the first place.</td><td class="n">8.3%</td></tr>
+          <tr><td class="n">4</td><td><strong>Lead with an audit that names three specific misses in their live account.</strong></td><td class="n">8.3%</td></tr>
+          <tr><td class="n">5</td><td><strong>Disclose who works the account and how many others they hold.</strong></td><td class="n">2026 narrative</td></tr>
+          <tr><td class="n">6</td><td><strong>Flat fee. Never a percentage of ad spend.</strong></td><td class="n">5.9%</td></tr>
+          <tr><td class="n">7</td><td><strong>Publish the standard by which any agency should be judged.</strong></td><td class="n">204 posts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h3>What I removed from the earlier draft</h3>
+      <p>
+        The previous version built the positioning on call recordings and missed-call text-back. BrandAlly does
+        not offer either, so both are cut from the strategy. Speed to lead is still a real and unclaimed
+        opportunity in the research, but it is a capability decision, not a messaging one, and it does not
+        belong in positioning until it exists.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 02 BUYER ============ -->
+  <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+
+    <div class="takeaway">
+      <p><b>The buyer is not marketing-naive. They are marketing-burned, and their scepticism is specific and earned.</b></p>
+    </div>
+
+    <h2>Where they are when they find you</h2>
+    <p>
+      The typical poster has bought marketing more than once. They have used a shared-lead marketplace and
+      watched the same lead go to four competitors. They have paid an agency somewhere between $850 and $5,000
+      a month and received a PDF. Several ran the ads themselves at 10pm after a full day of physical work.
+      The question is no longer "does paid advertising work". It is "will this fail the way the last three did".
+    </p>
+
+    <h2>The four options they are weighing, in their words</h2>
+    <p>
+      They are not choosing between agencies. They are choosing between four different shapes of solution, and
+      you are one of them.
+    </p>
+    <blockquote>
+      <p>I could try to learn it myself... I could hire someone in house full time. Feels way too early for that... I could find a freelancer on a monthly retainer. This is probably where I'm leaning but I don't know how to find someone who actually knows home services instead of just running ads for everyone under the sun. Feels like a coin flip without good references. Or I could go with one of the bigger agencies. I had a call with one recently and they pitched me hard, but every time I dig around I hear the same story, you sign with the senior person and get handed off to some junior who doesn't know your business.</p>
+      <cite>Home services owner, LA &middot; r/AskMarketing &middot; 18 May 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1tgsohn/stuck_on_whether_to_learn_google_ads_myself_hire/">source</a></cite>
+    </blockquote>
+    <div class="means"><b>What it means for BrandAlly</b>Your competitive set is DIY, a freelancer, and an in-house hire, not other agencies. The winning argument is not "we are a better agency", it is "here is why this shape beats the other three for you right now".</div>
+
+    <h2>The six beliefs they arrive with</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Belief</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Marketing is a black box built to keep me confused</strong></td><td>Rank 1 theme. 204 posts are owners asking how to evaluate an agency at all.</td></tr>
+          <tr><td><strong>I judge everything by one question: did it produce revenue</strong></td><td>Appears in owner language across all four markets and every vertical examined.</td></tr>
+          <tr><td><strong>The people who sell me are not the people who serve me</strong></td><td>The most-shared agency critique of 2026, a founder's retainer breakdown, 125 comments.</td></tr>
+          <tr><td><strong>I cannot see what the fee pays for</strong></td><td>5.9% of the agency corpus. The reflex question is "do I need all of these services".</td></tr>
+          <tr><td><strong>I am time-poor in a physical way</strong></td><td>Owners describe recording content while prepping, calling back from a ladder, editing at 10pm.</td></tr>
+          <tr><td><strong>I might be able to do this myself now</strong></td><td>6.2% went in-house or DIY. 6.1% raise AI directly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The thing they will not say out loud</h2>
+    <p>
+      Underneath all six sits an admission owners make only obliquely: they cannot tell competence from
+      salesmanship, and it embarrasses them. One eCommerce owner spent a year learning paid ads for the sole
+      purpose of being able to tell whether the next agency was lying to him.
+    </p>
+    <blockquote>
+      <p>They were okay but I didn't know enough about ads to trust their reporting so I fired them after a few months... After I fired them I spent a year learning a ton about paid ads, the new andromeda features, etc. Enough to know if an agency was BS'ing me.</p>
+      <cite>High six-figure eCommerce brand &middot; r/ecommerce &middot; 22 Oct 2025 &middot; <a href="https://reddit.com/r/ecommerce/comments/1od0c4w/learnings_after_working_with_marketing_agencies/">source</a></cite>
+    </blockquote>
+
+    <h2>The B2B variant</h2>
+    <p>
+      Since BrandAlly runs LinkedIn as well as Google and Meta, the B2B buyer matters. Same wound, different
+      vocabulary, bigger budget.
+    </p>
+    <blockquote>
+      <p>After years with agencies, we're ready for something different, a single, dedicated expert who will genuinely understand our business, not a rotating cast of account managers. We want someone who thinks like a partner, not a vendor.</p>
+      <cite>B2B SaaS company, Dallas, $700K annual Google budget, 3:1 target ROAS &middot; r/googleads &middot; 12 Mar 2026 &middot; <a href="https://reddit.com/r/googleads/comments/1rs7lyo/hiring_b2b_saas_google_ads_manager_700k_budget/">source</a></cite>
+    </blockquote>
+    <div class="means"><b>What it means for BrandAlly</b>At B2B budget levels the buyer is actively looking for a named individual over an agency structure. Lead with the operator, not the company.</div>
+  </div>
+
+  <!-- ============ 03 FRUSTRATIONS ============ -->
+  <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+
+    <div class="takeaway">
+      <p><b>Eight frustrations, ranked by how often owners raise them. Everything in this report traces back to these.</b></p>
+    </div>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 1</span><span class="name">The report does not answer "did this make me money"</span><span class="pct">18.8%</span></div>
+      <div class="frust-body">
+        <p>The single largest complaint in the market, in every country and every vertical. Owners are handed impressions, sessions and engagement rate, and have no way to connect any of it to revenue.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>i asked them whats different and they just showed me graphs. cool graphs but my phone still wasnt ringing.</p>
+          <cite>Local service owner &middot; r/SmallBusinessOwners &middot; 28 Feb 2026 &middot; <a href="https://reddit.com/r/SmallBusinessOwners/comments/1rgrfob/anyone_feels_google_ads_waste_of_money/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>every single digital marketing seo agency handed us the same shiny deck, promised page one rankings in 90 days, then sent monthly reports stuffed with vanity metrics while our actual traffic stayed dead flat.</p>
+          <cite>Two years, three agencies &middot; r/AskMarketing &middot; 24 Jun 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1ue5g3f/how_do_you_actually_tell_a_good_digital_marketing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I used to get reports that were full of impressions, reach, random percentages going up. But no real connection to outcomes... And more importantly: the numbers are consistent month to month, not changing every time.</p>
+          <cite>Owner, two agencies deep &middot; r/digital_marketing &middot; 8 Apr 2026 &middot; <a href="https://reddit.com/r/digital_marketing/comments/1sfgjfs/how_can_you_actually_tell_if_a_digital_marketing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>The report had three numbers. brand impressions: 184k, website sessions: 2,100, engagement rate: 4.7%. That was it. No booked jobs. No form submissions. No lead source breakdown. Nothing tied to revenue... He's paying them $33,600 a year.</p>
+          <cite>Reported speech: an auditor describing a roofer's agency report &middot; r/smallbusiness &middot; 7 May 2026 &middot; <a href="https://reddit.com/r/smallbusiness/comments/1t5z4kp/contractor_paying_33k_a_year_to_marketing_agency/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>Revenue, booked calls, ROAS and ROI reporting is your headline, not a bullet on a services page. Note the second requirement in the third quote: the metric definitions must not change month to month. Shifting metrics reads as hiding.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 2</span><span class="name">The basics were never done, and I found out myself</span><span class="pct">8.3%</span></div>
+      <div class="frust-body">
+        <p>Owners now open their own accounts and check. It is always the same short list: no negative keywords, geographic leakage, an ignored Google Business Profile, conversion tracking that was never set up properly.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>When I started looking at the search terms report, I noticed a ton of stuff like: "cleaning jobs near me", "how to start a cleaning business", "cleaning supplies wholesale", "merry maids reviews"... "office cleaning" (I only do residential).</p>
+          <cite>Residential cleaning owner, $12k spent, 2 leads &middot; r/PPC &middot; 10 Apr 2026 &middot; <a href="https://reddit.com/r/PPC/comments/1shrplp/spent_12k_on_google_ads_over_3_months_and_only/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I didn't see them add any negatives the first week of the campaign after which I added several hundred from the search term reports.</p>
+          <cite>Car body repair owner, 6 weeks in &middot; r/googleads &middot; 18 Jun 2026 &middot; <a href="https://reddit.com/r/googleads/comments/1u8xfui/realisitic_expectations_from_an_agency/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>they work 30 hours a week on my account... I did all of that 6 months after the agency started because they never touched the GBP. They listed GBP optimization in their reports as something that should be completed, but they never made it clear that they expected me to do it.</p>
+          <cite>Printing company owner, 10 months in &middot; r/SEO &middot; 17 Feb 2026 &middot; <a href="https://reddit.com/r/SEO/comments/1r6wwe2/is_this_normal_for_a_seo_agency_10_months_30/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>The pre-sale audit is the highest-converting first touch available, because it confirms a suspicion the prospect already has and cannot check alone.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 3</span><span class="name">Sold by the senior, served by a junior</span><span class="pct">Defining 2026 story</span></div>
+      <div class="frust-body">
+        <p>Low keyword count, enormous narrative weight. It shows up as a story rather than a phrase, and it is now the default assumption a prospect brings to a first call.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>My ad account was immediately handed off to a 22-year-old junior media buyer who, I later found out, was juggling 14 other clients at the exact same time... I realized I wasn't paying for elite marketing performance. I was just funding their sales machine.</p>
+          <cite>Multi-brand founder, $5,000/mo retainer &middot; r/Entrepreneur &middot; 16 Mar 2026 &middot; 125 comments &middot; <a href="https://reddit.com/r/Entrepreneur/comments/1rv8lo0/a_few_years_ago_i_paid_a_marketing_agency_5000mo/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>every time I dig around I hear the same story, you sign with the senior person and get handed off to some junior who doesn't know your business.</p>
+          <cite>Home services owner, LA &middot; r/AskMarketing &middot; 18 May 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1tgsohn/stuck_on_whether_to_learn_google_ads_myself_hire/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>My account manager changed last month and the new one hasn't set up call tracking yet.</p>
+          <cite>Roofer paying $2,800/mo, reported speech &middot; r/smallbusiness &middot; 7 May 2026 &middot; <a href="https://reddit.com/r/smallbusiness/comments/1t5z4kp/contractor_paying_33k_a_year_to_marketing_agency/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>Name the operator and their account cap in writing. This is the objection where a small team has a structural advantage, and the advantage only counts if it is stated as a number.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 4</span><span class="name">I cannot see what the fee pays for</span><span class="pct">5.9%</span></div>
+      <div class="frust-body">
+        <p>Not price sensitivity. Value blindness. Owners price-anchor on what they can see being done, and a wide bundle reads as padding rather than generosity.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>Does $850/month in management fees seem reasonable for what sounds like a set-it-and-forget-it approach?</p>
+          <cite>Residential cleaning owner &middot; r/PPC &middot; 10 Apr 2026 &middot; <a href="https://reddit.com/r/PPC/comments/1shrplp/spent_12k_on_google_ads_over_3_months_and_only/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>Is $1,800 a fair price for this marketing + website package?... and the advertising budget is not included. Do I need all of the services in this package?</p>
+          <cite>Cleaning business owner &middot; r/cleaningbusiness &middot; 19 Jul 2026 &middot; <a href="https://reddit.com/r/cleaningbusiness/comments/1v0yvc4/is_1800_a_fair_price_for_this_marketing_website/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>they charged us 4 months of retainer with no active campaigns running</p>
+          <cite>FBA brand, six firms deep &middot; r/PPC &middot; 10 Apr 2026 &middot; <a href="https://reddit.com/r/PPC/comments/1shwuwk/looking_for_a_full_service_agency_but_having/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>Unbundle the scope and anchor the fee against one customer or one job, not against a monthly marketing line.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 5</span><span class="name">The money went and nothing came back</span><span class="pct">Named with figures</span></div>
+      <div class="frust-body">
+        <p>When owners quantify the loss they do it precisely, and the number is usually in the thousands. These are the figures a prospect is comparing your fee against.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>Spent $12K on Google Ads over 3 months and only got 2 leads. ~$9,400 in actual ad spend + $2,600 in management fees. Two leads total, one of which wasn't even qualified.</p>
+          <cite>Residential cleaning owner &middot; r/PPC &middot; 10 Apr 2026 &middot; <a href="https://reddit.com/r/PPC/comments/1shrplp/spent_12k_on_google_ads_over_3_months_and_only/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I spent over $14,000 on Google Ads and got ZERO leads. No walk-ins, no bookings, just clicks and burnt cash.</p>
+          <cite>Skin clinic owner, Sydney &middot; r/AskMarketing &middot; 25 Jul 2025 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1m8vq4n/help_i_run_a_skin_clinic_lost_14k_on_google_ads/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I've just hired an agency 3 months ago to run my ads, and I've just lost £4000, all my savings.</p>
+          <cite>Small brand owner, 390 orders in 3 years &middot; r/smallbusiness &middot; 24 Jan 2025 &middot; <a href="https://reddit.com/r/smallbusiness/comments/1i93a2u/my_business_is_failing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I feel like having gone with this agency I've just wasted more money for similar or worse results than what i could've achieved.</p>
+          <cite>Car body repair owner &middot; r/googleads &middot; 18 Jun 2026 &middot; <a href="https://reddit.com/r/googleads/comments/1u8xfui/realisitic_expectations_from_an_agency/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>The emotional stake is higher than the fee suggests. For a chunk of this market the previous failure consumed savings, so risk reversal matters more than a bigger promise.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 6</span><span class="name">I cannot tell a good agency from a good salesperson</span><span class="pct">204 posts asking</span></div>
+      <div class="frust-body">
+        <p>The meta-frustration underneath all the others, and the most commercially useful one, because it is the only one no competitor is answering.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>How are you supposed to tell a legit digital marketing seo agency from one that's just really good at selling retainers?</p>
+          <cite>r/AskMarketing &middot; 24 Jun 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1ue5g3f/how_do_you_actually_tell_a_good_digital_marketing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I've spoken with six different agencies so far... whenever I ask detailed questions about implementation, the answers become vague very quickly. One sales rep couldn't really explain how they handle technical SEO issues... A lot of these conversations left me feeling like I was talking to salespeople rather than the people who would actually be doing the work.</p>
+          <cite>r/smallbusiness &middot; 4 Jun 2026 &middot; <a href="https://reddit.com/r/smallbusiness/comments/1twr39i/seriously_is_95_of_the_seo_agency_world_just_a/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>the hardest part isn't finding an agency, it's knowing whether they're genuinely improving your business or just doing stuff that looks like work.</p>
+          <cite>Australian owner &middot; r/ausbusiness &middot; 8 Apr 2026 &middot; <a href="https://reddit.com/r/ausbusiness/comments/1sfgk8k/how_do_you_actually_tell_if_a_digital_marketing/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>Publish the evaluation standard. Whoever teaches this buyer how to judge any agency becomes the reference point rather than one more option on the list.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 7</span><span class="name">I got trapped, and leaving cost me</span><span class="pct">2.9%</span></div>
+      <div class="frust-body">
+        <p>Lower frequency than assumed, but high intensity, and it rises sharply in the UK and Australia.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>Performance hasn't met expectations... We decided to move on, but the contract has a 90-day wind-down clause they won't waive. Still have about $13k obligated to them.</p>
+          <cite>r/PPC &middot; 14 Aug 2025 &middot; <a href="https://reddit.com/r/PPC/comments/1mpqpuf/leaving_my_agency_stuck_paying_for_90_more_days/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>The last one locked us into a year long contract and basically ghosted us the second we asked why our leads weren't going up.</p>
+          <cite>r/AskMarketing &middot; 24 Jun 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1ue5g3f/how_do_you_actually_tell_a_good_digital_marketing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I'm struggling to work out who to go with as I don't want to get stuck in a contract with a company who isn't really communicating with us.</p>
+          <cite>UK online clothing business, Liverpool &middot; r/smallbusinessuk &middot; 20 Nov 2025 &middot; <a href="https://reddit.com/r/smallbusinessuk/comments/1p27c1v/looking_for_some_advice_on_choosing_an_seo_agency/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>Thirty-day rolling with no wind-down charge, stated plainly. In Australia this also aligns with the ACCC's 2025-26 focus on early termination and non-cancellation clauses.</div>
+      </div>
+    </article>
+
+    <article class="frust">
+      <div class="frust-head"><span class="rank">RANK 8</span><span class="name">You do not understand my business</span><span class="pct">2.9%</span></div>
+      <div class="frust-body">
+        <p>Lower frequency, but it predicts retention. Vertical-specific providers retain SMB clients measurably better than generalists.</p>
+        <p class="says">What they say</p>
+        <blockquote>
+          <p>I tried working with a large digital marketing firm in the US and it was a mismatch, they treated me like any other ecommerce store.</p>
+          <cite>Artisan jewellery brand, BC &middot; r/canadasmallbusiness &middot; 6 Jun 2026 &middot; <a href="https://reddit.com/r/canadasmallbusiness/comments/1tytw59/ive_spent_years_building_a_niche_jewelry_business/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I paid a marketing agency but they send me a social media template every month and want me to run a skin membership subscription of sorts which does not work very well for me as i am a doctor.</p>
+          <cite>Aesthetics clinic owner &middot; r/MedSpa &middot; 2 Jul 2026 &middot; <a href="https://reddit.com/r/MedSpa/comments/1ulqvlv/aesthetics_clinic_marketing/">source</a></cite>
+        </blockquote>
+        <blockquote>
+          <p>I don't know how to find someone who actually knows home services instead of just running ads for everyone under the sun.</p>
+          <cite>Home services owner, LA &middot; r/AskMarketing &middot; 18 May 2026 &middot; <a href="https://reddit.com/r/AskMarketing/comments/1tgsohn/stuck_on_whether_to_learn_google_ads_myself_hire/">source</a></cite>
+        </blockquote>
+        <div class="means"><b>What it means for BrandAlly</b>The niche positioning is doing real work here, and the last quote is the buyer actively searching for what BrandAlly is. Only claim the verticals you can evidence.</div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ============ 04 WHAT THEY WANT ============ -->
+  <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+
+    <div class="takeaway">
+      <p><b>They are not asking for better results. They are asking to be able to check the results themselves.</b></p>
+    </div>
+
+    <h2>What they care about, ranked</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>#</th><th>What they want</th><th>How they phrase it</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td><strong>Revenue, leads that convert, jobs booked</strong></td><td>"sales, revenue, number of qualified leads"</td></tr>
+          <tr><td class="n">2</td><td><strong>Numbers that stay defined the same way every month</strong></td><td>"the numbers are consistent month to month, not changing every time"</td></tr>
+          <tr><td class="n">3</td><td><strong>Ownership of accounts, analytics and data</strong></td><td>"we would retain ownership of all accounts, analytics, and data"</td></tr>
+          <tr><td class="n">4</td><td><strong>To know who is actually doing the work</strong></td><td>"a single, dedicated expert... not a rotating cast of account managers"</td></tr>
+          <tr><td class="n">5</td><td><strong>Someone who knows their specific industry</strong></td><td>"instead of just running ads for everyone under the sun"</td></tr>
+          <tr><td class="n">6</td><td><strong>Freedom to leave</strong></td><td>"month-to-month which is awesome"</td></tr>
+          <tr><td class="n">7</td><td><strong>Their time back, with a bounded commitment</strong></td><td>"a second full time job that I didn't sign up for"</td></tr>
+          <tr><td class="n">8</td><td><strong>Honesty about whether the channel even fits</strong></td><td>"I even hired a marketing agency because I was terrified that the problem was me"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The single best piece of evidence in the whole corpus</h2>
+    <p>
+      An owner comparing six agencies, describing exactly what separated the winner. Every element of it is
+      something BrandAlly can do today.
+    </p>
+    <blockquote>
+      <p>I've spoken with a more expensive agency that spent time reviewing our website before the call and pointed out several technical issues that nobody else mentioned. They also emphasized that we would retain ownership of all accounts, analytics, and data, which I appreciated because I've heard horror stories about agencies making it difficult for clients to leave.</p>
+      <cite>Owner evaluating six agencies &middot; r/smallbusiness &middot; 4 Jun 2026 &middot; <a href="https://reddit.com/r/smallbusiness/comments/1twr39i/seriously_is_95_of_the_seo_agency_world_just_a/">source</a></cite>
+    </blockquote>
+    <div class="means"><b>Read this closely</b>Two behaviours won that pitch, and neither is a case study or a result claim. Doing unpaid diagnostic work before the call, and volunteering account ownership without being asked. Both are free. Both are repeatable. Neither requires a capability you do not have.</div>
+
+    <h2>What they demonstrably do not care about</h2>
+    <div class="split">
+      <div class="col yes">
+        <h4>Moves the decision</h4>
+        <ul>
+          <li>Specific misses found in their live account</li>
+          <li>Revenue and booked-call reporting</li>
+          <li>Named operator with an account cap</li>
+          <li>Written account and data ownership</li>
+          <li>Thirty-day terms, no wind-down</li>
+          <li>Fee anchored to one customer's value</li>
+          <li>Honest "this channel may not fit you"</li>
+          <li>Industry-specific detail in the first call</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h4>Does not move the decision</h4>
+        <ul>
+          <li>Impressions, reach, sessions, engagement rate</li>
+          <li>Agency size, headcount, offices</li>
+          <li>Awards, badges, partner status</li>
+          <li>Number of services in the bundle</li>
+          <li>Live dashboards they cannot interpret</li>
+          <li>Strategy decks and frameworks</li>
+          <li>Follower growth</li>
+          <li>Being physically local to them</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">
+      Not one owner-voice post in the corpus cited agency size, awards, or partner status as a reason to buy.
+      "The same shiny deck" is now shorthand for the sales stage rather than the work.
+    </p>
+  </div>
+
+  <!-- ============ 05 POSITIONING ============ -->
+  <div class="panel" id="p5" role="tabpanel" aria-labelledby="t5" hidden>
+
+    <div class="takeaway">
+      <p><b>Not "we get better results". Every agency says that and the buyer cannot check it. The position is: we report the numbers you would check anyway.</b></p>
+    </div>
+
+    <h2>Positioning statement</h2>
+    <p>
+      For the owner who has already paid an agency and could never tell what it bought them, BrandAlly runs
+      paid advertising on Google, Meta and LinkedIn and reports in the only numbers that settle the question:
+      revenue, booked calls, and return on spend. The accounts, the tracking and the data stay in their name,
+      so the numbers are theirs to check rather than yours to claim.
+    </p>
+
+    <h2>The three pillars</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Pillar</th><th>The claim</th><th>The proof it rests on</th><th>Frustration answered</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Outcome reporting</strong></td>
+            <td>We report revenue, booked calls, ROAS and ROI. Not impressions.</td>
+            <td>Conversion tracking proven before spend starts. Same metric definitions every month.</td>
+            <td class="n">Rank 1</td>
+          </tr>
+          <tr>
+            <td><strong>Everything in your name</strong></td>
+            <td>Ad accounts, tracking and data are yours from day one and stay yours.</td>
+            <td>Written into the agreement. Verifiable in-platform, not in our dashboard.</td>
+            <td class="n">Rank 6, 7</td>
+          </tr>
+          <tr>
+            <td><strong>You know who is working on it</strong></td>
+            <td>A named operator, with a stated cap on how many accounts they hold.</td>
+            <td>Named in the agreement and on the site.</td>
+            <td class="n">Rank 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The short line</h2>
+    <div class="lines">
+      <div class="line">
+        <span class="t">Revenue, not impressions.</span>
+        <span class="cc">[24 chars]</span>
+        <span class="w">The shortest statement of the number one frustration and BrandAlly's actual practice at the same time. Works across Google, Meta and LinkedIn, and across local services and eCommerce.</span>
+      </div>
+      <div class="line">
+        <span class="t">You should not have to trust us. You should be able to check.</span>
+        <span class="cc">[60 chars]</span>
+        <span class="w">The positioning in one sentence. Use as the subheading under the H1, or as the closing line on a sales call.</span>
+      </div>
+    </div>
+
+    <h2>What the position is not</h2>
+    <ul class="plain">
+      <li><strong>Not "full service".</strong> Wide scope reads as padding. The reflex response is "do I need all of these services", not "what a good deal".</li>
+      <li><strong>Not "we get you more leads".</strong> Lead volume is the metric the last agency used to look busy. Owners have learned to distrust it.</li>
+      <li><strong>Not "the small agency where you deal with the founder".</strong> True, common, unprovable. Convert it into a disclosed account cap instead.</li>
+      <li><strong>Not a results claim in the headline.</strong> Results claims are unverifiable to this buyer, so they sit below the fold as support, never as the lead.</li>
+    </ul>
+  </div>
+
+  <!-- ============ 06 OFFER ============ -->
+  <div class="panel" id="p6" role="tabpanel" aria-labelledby="t6" hidden>
+
+    <div class="takeaway">
+      <p><b>Every component below removes one documented objection. Nothing here is value padding, and nothing here needs a capability BrandAlly does not have.</b></p>
+    </div>
+
+    <h2>Offer components</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Component</th><th>The objection it removes</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Reporting in revenue, booked calls, ROAS and ROI, with fixed metric definitions</strong></td><td>I cannot tell whether this made me money</td><td class="n">Rank 1</td></tr>
+          <tr><td><strong>Conversion tracking audited and proven before spend starts</strong></td><td>The numbers might not even be real</td><td class="n">Rank 2</td></tr>
+          <tr><td><strong>Ad accounts, tracking and data in their name, permanently</strong></td><td>I will be held hostage by the next one too</td><td class="n">Rank 6, 7</td></tr>
+          <tr><td><strong>Named operator with a published account cap</strong></td><td>I will be sold by you and served by a junior</td><td class="n">Rank 3</td></tr>
+          <tr><td><strong>Thirty-day rolling, no wind-down charge</strong></td><td>I will be trapped paying for something that is not working</td><td class="n">Rank 7</td></tr>
+          <tr><td><strong>Flat fee, never a percentage of ad spend</strong></td><td>They earn more when they waste more of my money</td><td class="n">Rank 4</td></tr>
+          <tr><td><strong>A stated ceiling on their time: one call plus account access</strong></td><td>This becomes another job I did not sign up for</td><td class="n">Time poverty</td></tr>
+          <tr><td><strong>An honest channel-fit verdict, including "not yet"</strong></td><td>They will take my money either way</td><td class="n">Rank 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The ladder</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Rung</th><th>What it is</th><th>Why it exists</th></tr></thead>
+        <tbody>
+          <tr><td><strong>No contact</strong></td><td>The ten-question agency evaluation checklist, published and downloadable</td><td>Meets the 204 posts asking how to judge an agency. Captures intent before they are ready to speak to anyone.</td></tr>
+          <tr><td><strong>Free</strong></td><td>Account audit naming three specific misses: negatives and search terms, geo leakage, conversion tracking, GBP</td><td>The behaviour that won a six-agency pitch. Costs an hour and works on a prospect with no results yet.</td></tr>
+          <tr><td><strong>Entry</strong></td><td>Thirty-day paid pilot with a defined outcome target, assets retained by them either way</td><td>Bounded risk for a buyer whose last failure cost them thousands, sometimes their savings.</td></tr>
+          <tr><td><strong>Ongoing</strong></td><td>Flat monthly fee, reported against revenue and booked calls</td><td>Ties the relationship to their scoreboard without pricing against their ad spend.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flag">
+      <h3>Capability decision, not a messaging decision</h3>
+      <p>
+        Speed to lead is the largest unclaimed differentiator in the local-services research. Missed calls and
+        unanswered after-hours enquiries are a loss owners name to the dollar, and no agency in the corpus
+        offers to fix it. One contractor lost a $6,600 job to a 25-minute callback delay. A medspa found half
+        of its after-hours enquiries booked elsewhere overnight.
+      </p>
+      <p>
+        BrandAlly does not currently offer call handling, recording or missed-call follow-up, so none of this
+        is in the positioning above. It is flagged here as a service-line decision worth making deliberately,
+        not as copy to write now.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 07 MESSAGING ============ -->
+  <div class="panel" id="p7" role="tabpanel" aria-labelledby="t7" hidden>
+
+    <div class="takeaway">
+      <p><b>Write in the register owners already use. Every line below is built from words that appear in the corpus.</b></p>
+    </div>
+
+    <h2>Lead lines, ranked by evidence weight</h2>
+    <div class="lines">
+      <div class="line">
+        <span class="t">Your last agency reported impressions. We report revenue.</span>
+        <span class="cc">[57 chars]</span>
+        <span class="w">Rank 1. Aimed at the top frustration, and it states an existing BrandAlly practice rather than a promise. H1 and cold email subject pattern.</span>
+      </div>
+      <div class="line">
+        <span class="t">What did your last agency actually make you? Most owners cannot answer.</span>
+        <span class="cc">[70 chars]</span>
+        <span class="w">Rank 2. Problem-first. Strongest on cold traffic and outbound because it is a question they genuinely cannot answer and it stings.</span>
+      </div>
+      <div class="line">
+        <span class="t">The accounts stay in your name. So do the numbers.</span>
+        <span class="cc">[49 chars]</span>
+        <span class="w">Rank 3. Directly mirrors what won a six-agency pitch. Strongest against a prospect currently mid-evaluation.</span>
+      </div>
+      <div class="line">
+        <span class="t">You will know who is running your account. And how many others they have.</span>
+        <span class="cc">[72 chars]</span>
+        <span class="w">Rank 4. Answers the defining 2026 objection with a disclosure rather than a claim. Strongest in the US and at B2B budget levels.</span>
+      </div>
+    </div>
+
+    <h2>Never use</h2>
+    <div class="lines">
+      <div class="line kill">
+        <span class="t">Guaranteed page one in 90 days</span>
+        <span class="cc">banned</span>
+        <span class="w">This exact promise appears in the corpus as the marker of a bad agency. Owners quote it back as evidence they were conned.</span>
+      </div>
+      <div class="line kill">
+        <span class="t">Full service marketing</span>
+        <span class="cc">banned</span>
+        <span class="w">A roofer paying $2,800 a month for "full service marketing" and receiving three vanity numbers is the archetype in this research.</span>
+      </div>
+      <div class="line kill">
+        <span class="t">Let us take marketing off your plate</span>
+        <span class="cc">banned</span>
+        <span class="w">Category-generic and unprovable, and it is what the last three said. Replace with the bounded time commitment.</span>
+      </div>
+      <div class="line kill">
+        <span class="t">We are passionate about growing your business</span>
+        <span class="cc">banned</span>
+        <span class="w">Zero information. This buyer reads warmth without specifics as the sales stage, not the work.</span>
+      </div>
+    </div>
+
+    <h2>Vocabulary</h2>
+    <div class="split">
+      <div class="col yes">
+        <h4>Their words, use these</h4>
+        <ul>
+          <li>Revenue</li>
+          <li>Booked calls, booked jobs</li>
+          <li>Leads that convert</li>
+          <li>Qualified</li>
+          <li>Return on spend</li>
+          <li>What it actually cost me</li>
+          <li>Tyre-kickers, price shoppers</li>
+          <li>Out of area</li>
+          <li>Wasted spend</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h4>Agency words, avoid these</h4>
+        <ul>
+          <li>Impressions, reach, sessions</li>
+          <li>Engagement rate</li>
+          <li>Brand awareness</li>
+          <li>Holistic, end-to-end, full funnel</li>
+          <li>Synergy, partnership, journey</li>
+          <li>Best-in-class, cutting-edge</li>
+          <li>Data-driven (unmodified)</li>
+          <li>Leveraging, unlocking</li>
+          <li>Let us handle it</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Channel notes</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Channel</th><th>Buyer state</th><th>Message emphasis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Google Search</strong></td><td>Actively shopping for an agency, often mid-evaluation across four or five</td><td>The evaluation checklist and account ownership. They are comparing, so give them the comparison criteria.</td></tr>
+          <tr><td><strong>Meta</strong></td><td>Cold, scrolling, has a grudge they will tell you about unprompted</td><td>The frustration hook first. Impressions versus revenue, or "what did your last agency actually make you".</td></tr>
+          <tr><td><strong>LinkedIn</strong></td><td>B2B, larger budget, explicitly looking for a person rather than an agency</td><td>Named operator, account cap, and pipeline or booked-call reporting. Lead with the individual.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ 08 OBJECTIONS ============ -->
+  <div class="panel" id="p8" role="tabpanel" aria-labelledby="t8" hidden>
+
+    <div class="takeaway">
+      <p><b>Answer the belief, not the sentence. The surface objection is almost never the real one.</b></p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>They say</th><th>They believe</th><th>The move</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>"We tried an agency and it did not work"</strong></td>
+            <td>The category is unaccountable, not this one agency</td>
+            <td>Do not defend. Ask what happened, let them finish, then three specifics: was conversion tracking ever set up properly, were negative keywords added before launch, and did any report ever tie spend to revenue. The answer is almost always no, and that is the pitch.</td>
+          </tr>
+          <tr>
+            <td><strong>"How do I know you are not like the last three?"</strong></td>
+            <td>I have no way to evaluate any of you and I am tired of guessing</td>
+            <td>Hand over the checklist, including the questions that would expose you. "Here are ten questions to ask any agency, including me. If I cannot answer all ten on this call, do not hire me."</td>
+          </tr>
+          <tr>
+            <td><strong>"Why not just hire a freelancer or someone in-house?"</strong></td>
+            <td>Most of a retainer pays for sales and account management, not work in my account</td>
+            <td>Agree with the maths, do not argue it. Then separate the roles honestly. A freelancer is a real option. What you are buying instead is three platforms run as one system, tracking that survives a platform change, and someone accountable to a revenue number rather than a task list. Name the operator and the account cap here.</td>
+          </tr>
+          <tr>
+            <td><strong>"Can I not just do this with AI now?"</strong></td>
+            <td>Execution is commoditised and I am being charged as if it is not</td>
+            <td>Concede fully, then reframe to accountability. "AI will build the campaign. It will not tell you the campaign was measuring the wrong conversion for six months, and it does not carry the number with you."</td>
+          </tr>
+          <tr>
+            <td><strong>"That fee is too much"</strong></td>
+            <td>I cannot see what the money buys, so any number feels arbitrary</td>
+            <td>Do not discount. Unbundle, then anchor against one customer. "What is a new customer worth to you over a year?" Compare the fee to that, never to a monthly marketing line.</td>
+          </tr>
+          <tr>
+            <td><strong>"We already get leads from Angi, Thumbtack or Bark"</strong></td>
+            <td>I have a lead source, even if I resent it</td>
+            <td>"How many other companies got that same lead?" They know. Then use the dated facts: Bark cut credit expiry from twelve months to three in November 2025, and Google discontinued the consumer money-back Guaranteed on 7 November 2025.</td>
+          </tr>
+          <tr>
+            <td><strong>"Do you know my industry?"</strong></td>
+            <td>Generic strategy will burn my budget</td>
+            <td>Only claim it where it is true. Where it is not: "Not yet in depth. Here is what I know cold, and here is what I would spend the first week learning." Honesty outperforms a bluff with an owner-operator, and specialists retain SMB clients measurably better, so go deep on few verticals rather than shallow on many.</td>
+          </tr>
+          <tr>
+            <td><strong>"How long before I see something?"</strong></td>
+            <td>The last one said 90 days and then said it again</td>
+            <td>Give the real answer with a check window. Paid ads should show signal in weeks, and if everything is flat at the one to three month mark and the only explanation is "it takes time", that is a red flag. Say that before they have to ask.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The ten questions to publish</h2>
+    <p>
+      Taken from what owners actually posted in 2025 and 2026. This is the top-of-funnel asset and the sales
+      call agenda at the same time.
+    </p>
+    <ul class="plain">
+      <li>What did last month's spend produce in revenue or booked calls?</li>
+      <li>Is conversion tracking installed, and can I see what it is counting?</li>
+      <li>Who set the KPIs, me or you?</li>
+      <li>Will the metric definitions be the same next month as this month?</li>
+      <li>Were negative keywords added before the campaign launched?</li>
+      <li>What is in the search terms report that should not be there?</li>
+      <li>Who specifically works on my account, and how many others do they hold?</li>
+      <li>Do I own the ad accounts, the analytics and the data, and can I take them with me?</li>
+      <li>What is the notice period, and is there a wind-down charge?</li>
+      <li>What would make you tell me this channel is not right for my business?</li>
+    </ul>
+  </div>
+
+  <!-- ============ 09 MARKETS ============ -->
+  <div class="panel" id="p9" role="tabpanel" aria-labelledby="t9" hidden>
+
+    <div class="takeaway">
+      <p><b>One offer, four opening lines. The mechanism does not change by market. The dominant fear does.</b></p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Market</th><th>Sample</th><th>Dominant fear</th><th>Open with</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>United States</strong></td><td class="n">n=1,181</td>
+            <td>Sold by the senior, served by a junior</td>
+            <td>The staffing disclosure, before they raise it. Named operator and account cap in the first fold.</td>
+          </tr>
+          <tr>
+            <td><strong>United Kingdom</strong></td><td class="n">n=96</td>
+            <td>I do not know what a normal price is, and I will be tied in</td>
+            <td>Published pricing and a stated notice period. The UK objection is opacity, not competence.</td>
+          </tr>
+          <tr>
+            <td><strong>Australia</strong></td><td class="n">n=33</td>
+            <td>The contract, specifically</td>
+            <td>No lock-in, in the first line. The ACCC named auto-renewals, early termination fees and non-cancellation clauses in its 2025-26 enforcement priorities, so it carries weight here it does not carry elsewhere.</td>
+          </tr>
+          <tr>
+            <td><strong>Canada</strong></td><td class="n">n=28</td>
+            <td>Spending before anyone has vouched for you</td>
+            <td>Referral proof and the smallest possible first commitment. Canadian owners ask for recommendations far more than they post complaints.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine">
+      Samples are owner-voice posts mentioning an agency relationship. The US figure absorbs every post with no
+      location signal, so it is inflated and the other three are floors. Treat AU and CA as directional,
+      supported by the regulator and survey data in the source document.
+    </p>
+
+    <h2>Vertical evidence strength</h2>
+    <p>Use this when deciding which verticals to claim on the site.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Vertical</th><th>Owner-voice agency posts</th><th>Safe to claim research on?</th></tr></thead>
+        <tbody>
+          <tr><td>Roofing and home services</td><td class="n">59</td><td>Yes. Best-evidenced local vertical.</td></tr>
+          <tr><td>eCommerce, apparel</td><td class="n">55</td><td>Yes.</td></tr>
+          <tr><td>eCommerce, food and beverage</td><td class="n">42</td><td>Directionally.</td></tr>
+          <tr><td>Dog services</td><td class="n">37</td><td>No. See the note below.</td></tr>
+          <tr><td>Cleaning</td><td class="n">20</td><td>No. Single strong account only.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flag">
+      <h3>The dog caveat</h3>
+      <p>
+        BrandAlly sells to dog trainers and board and train facilities, and that is where this research is
+        thinnest. Across daycare, boarding, grooming and training the corpus yielded 37 owner-voice posts
+        mentioning an agency. r/dogdaycare produced 384 posts in total across nineteen months.
+      </p>
+      <p>
+        What transfers is structure, not sentiment. These businesses convert through a phone call or an enquiry
+        form, measure bookings per week, depend on Google Business Profile and reviews, and lose perishable
+        enquiries. So the positioning, the reporting model and the audit all run safely at dog businesses.
+        Quoting dog-owner language you do not have does not. Twenty recorded conversations with dog business
+        operators closes that gap and is the highest-return next step available.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 10 METHOD ============ -->
+  <div class="panel" id="p10" role="tabpanel" aria-labelledby="t10" hidden>
+
+    <div class="takeaway">
+      <p><b>What the research is, and what it cannot be used to claim.</b></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="n">106,593</span><span class="c">Posts crawled across 90 subreddits, Jan 2025 to Jul 2026</span></div>
+      <div class="stat"><span class="n">44,603</span><span class="c">Matched marketing, ads or agency terms</span></div>
+      <div class="stat"><span class="n">3,858</span><span class="c">Classified as business-owner voice, not agency-side</span></div>
+      <div class="stat"><span class="n">1,332</span><span class="c">Owner-voice posts naming an agency relationship</span></div>
+      <div class="stat"><span class="n">583</span><span class="c">Of those, posted in 2026</span></div>
+    </div>
+
+    <h2>Method</h2>
+    <p>
+      Reddit blocks automated retrieval, so the corpus was pulled through the Arctic Shift Reddit archive API
+      and filtered locally. An owner-voice classifier keeps posts where the author speaks as the buyer and
+      drops posts where they speak as the seller, which matters because most posts in the marketing subreddits
+      are practitioners talking to practitioners.
+    </p>
+    <p>
+      Secondary sources: Focus Digital 2026 agency churn report, a 1,000-owner Pollfish survey published May
+      2026, CFIB Canada September 2025 survey, ASBFEO and ACCC material from Australia, Google Local Services
+      Ads platform changes 2024 to 2025, Bark and Checkatrade pricing changes 2025, and a 2025 peer-reviewed
+      study of SME and digital-marketing-provider relationships.
+    </p>
+
+    <h2>Limits</h2>
+    <ul class="plain">
+      <li>Pet care and cleaning are under-evidenced. Do not present those as researched findings.</li>
+      <li>Australia and Canada rest on 33 and 28 posts. Those conclusions lean on regulator and survey data.</li>
+      <li>Geography is tagged by textual markers, so any post without a currency symbol or city name defaults to US. The US figure is inflated.</li>
+      <li>Reddit over-represents complaint and under-represents quiet satisfaction. The retention data partly counterbalances this.</li>
+      <li>Trustpilot, Quora, ContractorTalk, UK Business Forums, Flying Solo and all Facebook groups were unreachable, which removes a large seam of UK and Australian trades voice.</li>
+      <li>Theme percentages are keyword prevalence, not human-coded classification. They understate every theme. Use them to rank, not to quote.</li>
+      <li>One quote in section 03 is reported speech, an auditor relaying a roofer's words. It is labelled as such and the report structure it describes, not the wording, is the evidence.</li>
+    </ul>
+
+    <footer>
+      Full research document with all verbatim sources, per-vertical and per-market detail:
+      clients/_research/agency-voc-us-uk-au-ca-2025-2026.md
+    </footer>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function show(tab){
+    tabs.forEach(function(t){
+      var sel = t === tab;
+      t.setAttribute('aria-selected', String(sel));
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) { if (sel) { panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); } }
+    });
+    if (window.scrollY > 220) { window.scrollTo({ top: 220 }); }
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ show(t); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      var next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); show(next);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
